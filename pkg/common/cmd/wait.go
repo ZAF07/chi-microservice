@@ -1,6 +1,5 @@
 package cmd
 
-// WAIT
 import (
 	"log"
 	"net"
