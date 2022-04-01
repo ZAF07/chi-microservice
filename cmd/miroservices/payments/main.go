@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/ZAFO7/chi-microservice/pkg/common/cmd"
+	"github.com/ZAF07/chi-microservice/pkg/common/cmd"
 )
 
 func main () {
@@ -15,16 +15,16 @@ func main () {
 
 	ctx := cmd.Context()
 
-	paymentsinterface := createPaymentsmicroservice()
+	paymentsinterface := createPaymentsMicroservice()
 	if err := paymentsinterface.Run(ctx); err != nil {
 		panic(err)
 	}
 }
 
-func createPaymentsmicroservice() amqp.paymentsinterface {
-	cmd.waitForService(os.Getenv("SHOP_RABBITMQ_ADDR"))
+func createPaymentsMicroservice() amqp.paymentsinterface {
+	cmd.WaitForService(os.Getenv("SHOP_RABBITMQ_ADDR"))
 	
-	paymentsService := payments_app.NewPaymentsService(payments_infra_orders.NewHTTPClient(os.Getenv("SHOP_ORDERS_ADDR")))
+	paymentsService := payments_app.NewPaymentsService(payments_infra_orders.NewHTTPClient(os.Getenv("SHOP_ORDERS_SERVICE_ADDR")))
 
 	 paymentsInterface, err := amqp.NewPaymentsInterface(
 		 fmt.Sprintf("amqp://%s/", os.Getenv("SHOP_RABBITMQ_ADDR")),
