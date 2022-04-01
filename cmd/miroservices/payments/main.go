@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/ZAFO7/chi-microservice/pkg/common/cmd"
 )
 
 func main () {
